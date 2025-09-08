@@ -30,8 +30,6 @@ git commit을 통해 git add로 고른 파일을 기록
     - 커밋 아이디를 두 개 붙이면 두 커밋을 비교
     - 요새 에디터 잘돼있는데 이딴거 왜씀? 그냥 에디터나 쓰셈 ㅅㄱ
 
-수정하려고아무거나씀
-
 vim에디터로 들어가면 j나 k로 위아래로 움직일 수 있음
 q로 빠져나옴
 
@@ -40,9 +38,40 @@ q로 빠져나옴
 git branch [브랜치명]으로 브랜치를 생성
 git switch [브랜치명]으로 해당 브랜치로 이동
 
-병합할 브랜치 중 메인이 될 브랜치로 이동 후 git merge [합칠브랜치명] 입력하면 브랜치 병합
+병합할 브랜치 중 기준이 될 브랜치로 스위치 후 git merge [합칠브랜치명] 입력하면 브랜치 병합
 이 때 두 브랜치가 동일한 코드 부분을 수정했을 경우 충돌이 일어나는데, 코드를 수정하고 git add & git commit하면 해결됨
 
+#### merge의 종류
 
+1. 3-way merge
+   - 각 브랜치에 신규 커밋이 1회 이상 있는 경우, 두 브랜치의 코드를 합쳐서 새로운 커밋을 생성함
+   - 가장 기본적인 merge 방식
+2. fast-forward merge
+   - 병합 대상 브랜치에는 신규 커밋이 1회 이상 존재하나 기준 브랜치에는 신규 커밋이 없는 경우 병합 대상 브랜치를 기준 브랜치로 삼음
+   - 이 경우 병합 대상 브랜치를 원래부터 main 브랜치였던 것으로 취급하므로 merge 커밋이 생기지 않음
+     - 따라서 로그 상 브랜치가 나뉘지 않고 일직선처럼 보이게 되는데, 이렇게 로그의 복잡도를 줄이는 것을 히스토리 직선화라고 함
+   - fast-forward merge일 경우라도 git merge --no-ff [브랜치명]을 입력하여 강제로 3-way merge할 수 있음
+3. rebase and merge
+   - rebase란 브랜치의 시작점을 다른 커밋으로 이동시키는 것을 의미함
+   - rebase and merge는 브랜치의 시작점을 기준 브랜치의 최종 커밋으로 rebase 후 fast-forward merge하는 것을 의미함
+   - 즉, 강제 fast-forward merge. 따라서 이 방법으로 로그를 줄일 수 있음
+   - 단, conflict가 발생할 가능성이 높으므로 신중히 해야 함
+4. squash and merge
+   - git merge [병합브랜치명] --squash로 실행
+   - squash and merge는 병합 후 병합 대상 브랜치를 멸족시켜서 로그에 남기지 않음
+   - rebase and merge와 비슷하게 로그를 줄일 수 있음
+
+- rebase and merge 하는 법
+  1. git switch [병합브랜치명]으로 병합브랜치로 이동
+  2. git rebase [기준브랜치명]으로 기준브랜치의 최종 커밋으로 병합브랜치를 리베이스
+     - 충돌할 경우 수정 후 git add & git rebase --continue
+  3. git switch [기준브랜치명]으로 기준브랜치로 이동
+  4. git merge [병합브랜치명]으로 병합(fast-forward merge)
+
+
+
+- 병합이 완료된 브랜치는 git branch -d [삭제브랜치명]으로 삭제할 수 있음
+  - 병합 후 브랜치는 보통 삭제하는 것이 일반적임
+  - 병합하지 않은 브랜치는 git branch -D [삭제브랜치명]으로 삭제하면 됨
 
 
