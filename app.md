@@ -3,7 +3,7 @@
 
 git add [파일명]으로 기록할 파일을 고름
 git commit을 통해 git add로 고른 파일을 기록
-- git commit -m 'message'를 통해 커밋에 메시지를 넣을 수 있음
+- git commit -m '메세지'를 통해 커밋에 메시지를 넣을 수 있음
 
 이 때, add로 고른 파일을 임시로 모아두는 곳을 Staging Area,
 파일을 기록한 것을 모아두는 곳을 Repository(저장소)라고 부름
@@ -40,7 +40,8 @@ q로 빠져나옴
 git branch [브랜치명]으로 브랜치를 생성
 git switch [브랜치명]으로 해당 브랜치로 이동
 
-
+병합할 브랜치 중 메인이 될 브랜치로 이동 후 git merge [합칠브랜치명] 입력하면 브랜치 병합
+이 때 두 브랜치가 동일한 코드 부분을 수정했을 경우 충돌이 일어나는데, 코드를 수정하고 git add & git commit하면 해결됨
 
 
 
