@@ -6,7 +6,6 @@
 - git commit -m '메세지'를 통해 커밋에 메시지를 넣을 수 있음
 
 **이 때, add로 고른 파일을 임시로 모아두는 곳을 Staging Area, 파일을 기록한 것을 모아두는 곳을 Repository(저장소)라고 부름**
-
 때문에 git add는 스테이징한다라고도 함
 
 ## 유용한 명령어
@@ -28,6 +27,7 @@
     - 요새 에디터 잘돼있는데 이딴거 왜씀? 그냥 에디터나 쓰셈 ㅅㄱ
 
 vim에디터로 들어가면 j나 k로 위아래로 움직일 수 있음
+
 q로 빠져나옴
 
 ## 브랜치
@@ -36,6 +36,7 @@ q로 빠져나옴
 **git switch [브랜치명]**으로 해당 브랜치로 이동
 
 병합할 브랜치 중 기준이 될 브랜치로 스위치 후 git merge [합칠브랜치명] 입력하면 브랜치 병합 
+
 이 때 두 브랜치가 동일한 코드 부분을 수정했을 경우 충돌이 일어나는데, 코드를 수정하고 git add & git commit하면 해결됨
 
 #### merge의 종류
@@ -51,7 +52,7 @@ q로 빠져나옴
 3. **rebase and merge**
    - rebase란 브랜치의 시작점을 다른 커밋으로 이동시키는 것을 의미함
    - rebase and merge는 브랜치의 시작점을 기준 브랜치의 최종 커밋으로 rebase 후 fast-forward merge하는 것을 의미함
-   - 즉, 강제 fast-forward merge. 따라서 이 방법으로 로그를 줄일 수 있음
+     - 즉, 강제 fast-forward merge
    - 단, conflict가 발생할 가능성이 높으므로 신중히 해야 함
 4. **squash and merge**
    - git merge [병합브랜치명] --squash로 실행
