@@ -78,5 +78,12 @@ git restore [파일명]을 통해 해당 파일을 최종 커밋으로 되돌릴
 - git restore --source [커밋아이디] [파일명]을 통해 해당 파일을 특정 커밋으로 되돌릴 수 있음
 - git restore --staged [파일명]을 통해 해당 파일의 스테이징을 취소할 수 있음
 
-git revert [커밋아이디]를 통해 해당 커밋의 모든 변경내역을 취소할 수 있음
+git revert [커밋아이디]를 통해 해당 커밋의 모든 변경을 취소할 수 있음
+- git revert [커밋아이디1] [커밋아이디2]를 통해 여러 개의 커밋의 변경을 취소할 수 있음
+- git revert HEAD를 통해 최종 커밋의 변경을 취소할 수 있음
+
+git reset [커밋아이디]를 통해 커밋 헤드를 해당 커밋으로 이동
+- git reset --soft [커밋아이디]를 통해 헤드 커밋 이후의 변경사항을 스테이징. working directory에는 영향이 없음
+- git reset --mixed [커밋아이디]를 통해 헤드 커밋 이후의 커밋 변경사항을 working directory에 남김(기본값)
+- git reset --hard [커밋아이디]를 통해 헤드 커밋 이후의 커밋 변경사항을 모두 삭제
 
