@@ -10,8 +10,6 @@ git commit을 통해 git add로 고른 파일을 기록
 
 때문에 git add는 스테이징한다라고도 함
 
-
-
 ## 유용한 명령어
 
 - git add .
@@ -67,8 +65,6 @@ git switch [브랜치명]으로 해당 브랜치로 이동
      - 충돌할 경우 수정 후 git add & git rebase --continue
   3. git switch [기준브랜치명]으로 기준브랜치로 이동
   4. git merge [병합브랜치명]으로 병합(fast-forward merge)
-
-
 
 - 병합이 완료된 브랜치는 git branch -d [삭제브랜치명]으로 삭제할 수 있음
   - 병합 후 브랜치는 보통 삭제하는 것이 일반적임
