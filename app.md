@@ -21,7 +21,8 @@
   - --oneline은 커밋 로그를 한 줄씩 보여줌
   - --graph는 커밋 로그를 그래프로 그려줌
 - **git diff**
-  - 현재 파일과 직전 커밋을 비교
+  - 현재 파일과 스테이징된 사항을 비교
+  - git diff HEAD로 최종 커밋과 현재 파일을 비교
   - git difftool이 더 좋으니까 그거 쓰셈
     - git difftool 뒤에 커밋 아이디 붙이면 해당 커밋과 비교
     - 커밋 아이디를 두 개 붙이면 두 커밋을 비교
@@ -57,7 +58,7 @@ q로 빠져나옴
    - 단, conflict가 발생할 가능성이 높으므로 신중히 해야 함
 4. **squash and merge**
    - git merge [병합브랜치명] --squash로 실행
-   - squash and merge는 병합 후 병합 대상 브랜치를 멸족시켜서 로그에 남기지 않음
+   - squash and merge는 병합 후 병합 대상 브랜치를 하나의 커밋으로 합침
    - rebase and merge와 비슷하게 로그를 줄일 수 있음
 
 - rebase and merge 하는 법
@@ -105,6 +106,7 @@ q로 빠져나옴
 git pull은 git fetch + git merge를 합친 것
 - git fetch는 원격 저장소의 신규 커밋들을 가져옴
 - git merge가 포함되어 있는 탓에 conflict가 발생할 수도 있음
+- git pull --rebase는 fetch + rebase이므로 로그를 깔끔하게 할 수 있어 자주 쓰임
 
 .gitignore 파일에 커밋할 필요가 없는 파일을 명시할 수 있음
 명시된 파일들은 스테이징 대상이 되지 않음
@@ -113,3 +115,26 @@ git pull은 git fetch + git merge를 합친 것
 
 로컬에서 브랜치 생성 후 push하면 원격에서도 브랜치가 생성됨
 협업의 경우 브랜치를 합칠 때 깃허브에서 pull request를 통해 병합 요청을 올릴 수 있음
+
+
+## 협업에서의 git 방법론
+
+1. gitflow
+   - main 브랜치 외에 develop 브랜치를 생성하고, 그 아래에 feature 브랜치를 생성하여 feature 브랜치에서 개발을 진행
+   - feature에서 개발 단위가 완성될 때마다 develop에 merge
+   - 출시가 가능할 정도로 기능이 완성된 경우 release 브랜치에서 검수 및 디버깅
+   - 디버깅까지 마친 최종본을 main에 merge
+   - 즉, 개발을 계층화하여 안정성을 높이는 방식
+2. trunk-based 
+   - 기능 추가나 버그 픽스가 필요할 때마다 그때그때 새로운 브랜치를 생성하여 개발
+   - 기능이 완성되면 main 브랜치에 merge
+   - CI/CD, 뼈대가 확실한 프로그램이나 개발이 많이 진척된 경우, 팀원들의 숙련도가 매우 높은 경우에 적합
+
+## 잠깐 코드 치워두기
+
+git stash로 저장되지 않은 수정사항을 별도로 보관
+- git stash list로 보관된 수정사항을 열람
+- git stash pop으로 가장 최근 보관한 수정사항을 꺼냄 
+- git stash drop [번호]로 해당 번호에 해당하는 수정사항을 삭제
+- git stash clear로 모든 수정사항 삭제
+
